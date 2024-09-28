@@ -68,7 +68,7 @@ Transfoer le script python en une application GitHub Pages grâce à
 
 
 ## Discussions 
-- Pas de possibilité de faire un site multipage
+
 - pas de possibilité d'éxécuter du code directement sur le site
 
 - Solution idéal pour des dashboards percutants en un minimum d'effort.
