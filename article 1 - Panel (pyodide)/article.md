@@ -1,7 +1,6 @@
 # Dynamic & client-side website or portfolio (GitHub Pages) n°1 - Panel (pyodide-worker)
 
 ## Introduction
-
 - Lors de création de mon précédent portfolio ( https://towardsdatascience.com/full-guide-to-build-a-professionnal-portfolio-with-python-markdown-git-and-github-page-for-66d12f7859f0 ) réalisé avec mkdocs,. 
   Mkdocs : complètement statique, aucun moyen de faire du dynamique type dashboarding ou exécution de code directement sur le site. 
   --> frustration de ne pas pouvoir faire un site dynamique
@@ -29,13 +28,12 @@ Site dynamique de dashboard (**écriture et exécution de code hors scope : autr
 
 SUjet colossal, avec des dizaine sinon des centaines de solutions --> série de plusieurs articles, à cahque fois une nouvelle solution.
 
-
 ## Matériel et méthodes
 Contingence techniques : 
 - Pas de JavaScript (maitrise pas suffisante)
 - Dashboarding par package Panel : volonté de monter en compétence sur le package. Si la nécessité se présente à mes yeux ou forte demande de votre part, possibilité avec autres packages type Dahs, strealint, NiceGUI, ...
 
-Prinipaux packages/solftwares : Panel (holoviz)
+Prinipaux packages/solftwares : Panel (holoviz), mkdocs, 
 
 3 scripts : 
 - app.py 
@@ -61,14 +59,22 @@ Puis : `python -m http.server`
 - GitHub Pages : 
 Parti création du repo github et de la configuration pour créer une GitHub Pages pour un repor non préicsé ici (voir mon précédent aritcle)
 
-Transfoer le script python en une application GitHub Pages grâce à  
+Transfoer le script python en une application GitHub Pages grâce à  : 
+1. Mettre les convervsion en pyodide-worker dans un dossier docs/
+2. Ajouter un index pour renoyver versla page
+3. Pusher dansle remote repo
 ```python
 
 ```
 
+NB : Material app : possibilité d'ajouteru n lien vers Big app ==mettre le code==
+
+- [ ] Tester ajout d'un template github Pages type JustTheDocs avec mkdocs + pages dashboarding
 
 ## Discussions 
+- Possibilité de créer un dashboard multipage facilement et hébergeable directement sur GitHub Pages grâce à la magie de WebAssembly.
+- Solution idéal pour des dashboards percutants en un minimum d'effort
+- Possibilité d'ajouter une partie statique via mkdocs facielemnt, pour un site web plus riche
 
-- pas de possibilité d'éxécuter du code directement sur le site
-
-- Solution idéal pour des dashboards percutants en un minimum d'effort.
+- Pas de possibilité d'éxécuter du code directement sur le site
+- Visuel du dasbhoard paramétrable mais pas aussi aisément que l'ai la création
