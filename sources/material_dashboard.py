@@ -17,6 +17,8 @@ def get_data():
 
 data = get_data()
 
+data.tail()
+
 def transform_data(variable, window, sigma):
     """Calculates the rolling average and identifies outliers"""
     avg = data[variable].rolling(window=window).mean()
