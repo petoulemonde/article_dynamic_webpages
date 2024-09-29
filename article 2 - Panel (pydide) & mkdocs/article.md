@@ -1,0 +1,1 @@
+idem que article 1, avec mkdocs JustTHeDocs + Panel apps

@@ -22,6 +22,8 @@ Rapide présentation de la suite Holoviz (pour les plus curieux) :
 	- N'importe quel type package de visualisation en sortie (parmi les plus grnad packages) : MatPlotLib, Plotly, Bokeh.
 Idée de plusieurs packages de sorties repris un peu partout en python, cf. article suivant : https://medium.com/towards-data-science/the-power-of-pandas-plots-backends-6a08d52071d2 .
 Package créé et maintenu par les équipes de Anaconda, le gestionnaire de package.
+Description plus détaillée : https://towardsdatascience.com/3-ways-to-build-a-panel-visualization-dashboard-6e14148f529d
+
 
 ### Question de recherche 
 Site dynamique de dashboard (**écriture et exécution de code hors scope : autre article ?**), multipage, full client-side ?
@@ -44,37 +46,65 @@ Prinipaux packages/solftwares : Panel (holoviz), mkdocs,
 ==code==
 
 2 tests : 
-- pythonh tpp.server= émule un site web
+- test sur serveur html, via élulatin serveur html local avec `python -m htpp.server`
 - github pages déploiement
 
-Déploiement python .http : 
-Coté Panel : 
-```python
-panel convert simple_app.py --to pyodide-worker --out pyodide
-```
-Puis : `python -m http.server`
 ## Résultats
-- python http : tout marche parfaitemnt et rapidement, nickel chrome !
 
-- GitHub Pages : 
-Parti création du repo github et de la configuration pour créer une GitHub Pages pour un repor non préicsé ici (voir mon précédent aritcle)
-
-Transfoer le script python en une application GitHub Pages grâce à  : 
-1. Mettre les convervsion en pyodide-worker dans un dossier docs/
-2. Ajouter un index pour renoyver versla page
-3. Pusher dansle remote repo
+### VIsualiser fonctionnement optimal que devrait avoir le dasbhoard
+Fonction Panel de visualisation du dashboard, notamment utile lors de la construction de ce dernier : 
 ```python
-
+panel serve simple_app.py --dev
 ```
+Explication : 
+- `panel serve simple_app.py` : visualiser le rendu du dashboard
+- `--dev` : recharger le dashboard à chaque modification des sifhciers sous-jancets (peut nécessité l'installation d'un ou plusieurs autres pakcages, notammetn pour suivre si modification oui/non des ficheirs sous-jacents)
 
-NB : Material app : possibilité d'ajouteru n lien vers Big app ==mettre le code==
+Cette visualisatin = référence pour les solutions de déploiement.
 
-- [ ] Tester ajout d'un template github Pages type JustTheDocs avec mkdocs + pages dashboarding
+### Déploiement serveur
+1. Transformer app python en app dynamique html : 
+Coté Panel (exemple avec simple_app.py) : 
+```python
+panel convert simple_app.py --to pyodide-worker --out app
+```
+Dans le dossier app (partie '--to app' de la ligne de code), 2 fichiers, de même nom que le script python avec les extensions 'html' et 'js' devraient apparaitre = version transcrite pour le web dynamqiue du dashboard python. SOus le capot, utilisation de WebAssembly.
+2. Emuler serveur `python -m http.server`
+3. Cliquer sur l'app html à lancer
+<u>NB</u> : pour lancer automatiquement le script python lorsque on ouvre son dosser, intituler les ficheirs html et javascript 'index'.
+exemple : 
+```markdown
+app/
+|- index.html
+|- index.js
+```
+Lorsque ouverture de app/ dans le serveur html local, index.html se lancera automatiquement.
+
+- Les 3 apps marchent parfaitements et rapidement, nickel chrome !
+
+### GitHub Pages : 
+Parti création du repo github et de la configuration pour créer une GitHub Pages pour un repor survolé ici, car description beaucoup plsu fine dans mon précédent article.
+
+Transfoer le script python en une application Github pages grâce à : 
+1. Mettre les convervsion en pyodide-worker dans un dossier 'docs/' à la racine du repo (nom important & emplacement !)
+```python
+panel convert simple_app.py --to pyodide-worker --out docs
+```
+2. Ajouter un fichier 'index.html' qui pointe vers le ficheir html de l'app pour renoyver vers la page (ou bien l'application en elle même, en nommant les ficheirs html et javascript de l'app 'index.html' et 'index.javascript').
+ex : page github projet : https://petoulemonde.github.io/article-dynamic-webpages
+Ajouter 'index.html' à la racine = home page de la page github projet. Lien vers les dashboards (ex : https://petoulemonde.github.io/article-dynamic-wabpages/docs/simple_app.html)
+3. Pusher dans le remote repo
+4. Dans le repo, activer la création d'un apge github projet.
+
+### Problèmes rencontrés
+Dasbhoards tel que testé = 1 seule page, sans lien vrs d'autres pages pour créer un site web riche.
+Possibilité d'ajouter des liens vers d'autres pages du site dans les apps.
+exemple avec Material template : 
+==mettre le code==
 
 ## Discussions 
 - Possibilité de créer un dashboard multipage facilement et hébergeable directement sur GitHub Pages grâce à la magie de WebAssembly.
-- Solution idéal pour des dashboards percutants en un minimum d'effort
-- Possibilité d'ajouter une partie statique via mkdocs facielemnt, pour un site web plus riche
+- Solution idéal pour des dashboards dynamiques & percutants en un minimum d'effort
 
 - Pas de possibilité d'éxécuter du code directement sur le site
 - Visuel du dasbhoard paramétrable mais pas aussi aisément que l'ai la création
