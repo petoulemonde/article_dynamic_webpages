@@ -220,7 +220,7 @@ Rapport des tests :
 Après avoir tester chacune des 3 applications énoncées précédement, cette solution fonctionne parfaitement avec chacune des applications, sans perte de vitesse dans le chargement et l'utilisation des applications.
 
 ### Second test: GitHub Pages deployment 
-Dans cet article, je wurvole rapidement la partie configuration de GitHub Pages sur GtHub, car je l'ai décrit en détail dans mon précédent article ( https://towardsdatascience.com/full-guide-to-build-a-professionnal-portfolio-with-python-markdown-git-and-github-page-for-66d12f7859f0 ).
+Dans cet article, je wurvole rapidement la partie configuration de GitHub Pages sur GitHub, car je l'ai décrit en détail dans mon précédent article ( https://towardsdatascience.com/full-guide-to-build-a-professionnal-portfolio-with-python-markdown-git-and-github-page-for-66d12f7859f0 ).
 
 1. Point d'alerte de l'étape 1 : le fichier 'docs' qui héberge les scripts html et JaVaScript soit s'appeler 'docs' et être placé à la récine du repo. Ce sont 2 conditions nécessaire pour pouvoir ensuite déployer les application sur GitHub Pages. Ni le nom du dossier ni sont emplacement ne peuvent être modifiés. 
 
